@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/spotbot/static/css/main.df807658.css",
-    "main.js": "/spotbot/static/js/main.e50cac3d.js",
+    "main.js": "/spotbot/static/js/main.89ca2482.js",
     "index.html": "/spotbot/index.html"
   },
   "entrypoints": [
     "static/css/main.df807658.css",
-    "static/js/main.e50cac3d.js"
+    "static/js/main.89ca2482.js"
   ]
 }
