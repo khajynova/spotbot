@@ -1,3 +1,4 @@
+// serviceWorkerRegistration.js
 const isLocalhost = Boolean(
 	window.location.hostname === 'localhost' ||
 		window.location.hostname === '[::1]' ||
@@ -7,10 +8,11 @@ const isLocalhost = Boolean(
 );
 
 export function register(config) {
+	// РЕГИСТРИРУЕМ ТОЛЬКО В PRODUCTION
 	if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
 		const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
+
 		if (publicUrl.origin !== window.location.origin) {
-			// Если PUBLIC_URL отличается от текущего origin, завершить процесс.
 			return;
 		}
 
@@ -18,25 +20,24 @@ export function register(config) {
 			const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
 			if (isLocalhost) {
-				// Проверка Service Worker в localhost
+				// Проверка Service Worker на localhost
 				checkValidServiceWorker(swUrl, config);
-				navigator.serviceWorker.ready.then(() => {
-					console.log(
-						'Это приложение работает в кэш-режиме. Подробнее: https://cra.link/PWA',
-					);
-				});
 			} else {
-				// Регистрация Service Worker для production
+				// Регистрация для production
 				registerValidSW(swUrl, config);
 			}
 		});
+	} else {
+		console.log('Service Worker: режим разработки, регистрация отключена');
 	}
 }
 
 function registerValidSW(swUrl, config) {
 	navigator.serviceWorker
 		.register(swUrl)
-		.then(registration => {
+		.then((registration) => {
+			console.log('Service Worker зарегистрирован:', registration);
+
 			registration.onupdatefound = () => {
 				const installingWorker = registration.installing;
 				if (installingWorker == null) {
@@ -47,22 +48,15 @@ function registerValidSW(swUrl, config) {
 					if (installingWorker.state === 'installed') {
 						if (navigator.serviceWorker.controller) {
 							console.log(
-								'Новое содержимое доступно, но приложение работает офлайн.',
+								'Новая версия приложения доступна. Перезагрузите страницу для обновления.',
 							);
 
-							// Опциональное уведомление пользователю
 							if (config && config.onUpdate) {
 								config.onUpdate(registration);
 							}
-
-							const userAcceptsUpdate = window.confirm(
-								'Доступна новая версия приложения. Перезагрузить страницу, чтобы обновить?',
-							);
-							if (userAcceptsUpdate) {
-								window.location.reload();
-							}
 						} else {
-							console.log('Контент закеширован для оффлайн-использования.');
+							console.log('Приложение готово к работе офлайн');
+
 							if (config && config.onSuccess) {
 								config.onSuccess(registration);
 							}
@@ -71,7 +65,7 @@ function registerValidSW(swUrl, config) {
 				};
 			};
 		})
-		.catch(error => {
+		.catch((error) => {
 			console.error('Ошибка при регистрации Service Worker:', error);
 		});
 }
@@ -80,13 +74,14 @@ function checkValidServiceWorker(swUrl, config) {
 	fetch(swUrl, {
 		headers: { 'Service-Worker': 'script' },
 	})
-		.then(response => {
+		.then((response) => {
 			const contentType = response.headers.get('content-type');
+
 			if (
 				response.status === 404 ||
 				(contentType != null && contentType.indexOf('javascript') === -1)
 			) {
-				navigator.serviceWorker.ready.then(registration => {
+				navigator.serviceWorker.ready.then((registration) => {
 					registration.unregister().then(() => {
 						window.location.reload();
 					});
@@ -105,11 +100,12 @@ function checkValidServiceWorker(swUrl, config) {
 export function unregister() {
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.ready
-			.then(registration => {
+			.then((registration) => {
 				registration.unregister();
+				console.log('Service Worker отключен');
 			})
-			.catch(error => {
-				console.error('Ошибка при аннулировании Service Worker:', error);
+			.catch((error) => {
+				console.error('Ошибка при отключении Service Worker:', error);
 			});
 	}
 }

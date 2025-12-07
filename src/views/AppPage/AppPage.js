@@ -1,22 +1,36 @@
+// В НАЧАЛЕ файла AppPage.js ДОЛЖНА быть эта строка:
+const serverIP = 'http://localhost:3001'; // или process.env.REACT_APP_API_URL || 'http://localhost:3001'
+
+// Пример полного начала файла:
 import React, { useEffect, useState } from 'react';
 import './AppPage.styles.css';
 
 const AppPage = () => {
-	const serverIP = 'http://localhost:3001'; // Адрес локального мок-сервера
+	const serverIP =
+		process.env.NODE_ENV === 'production'
+			? 'https://khajynova.github.io/spotbot/api'
+			: 'http://localhost:3001';
 	const [freeSpaces, setFreeSpaces] = useState(Array(53).fill(0));
 	const [reservedSpaces, setReservedSpaces] = useState([]);
 	const [time, setTime] = useState('--:--:--');
 	const [error, setError] = useState(null);
 
 	const loadMap = () => {
-		fetch(serverIP + '/getFreeSpaces')
+		console.log('🔄 Загрузка данных с сервера...');
+		console.log('URL:', `${serverIP}/getFreeSpaces`);
+
+		fetch(`${serverIP}/getFreeSpaces`)
 			.then((response) => {
+				console.log('📥 Ответ сервера:', response.status, response.statusText);
 				if (!response.ok) {
-					throw new Error('Ошибка загрузки данных с сервера.');
+					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 				return response.json();
 			})
 			.then((data) => {
+				console.log('✅ Данные получены:', data.length, 'элементов');
+				console.log('Пример данных:', data.slice(0, 5));
+
 				setFreeSpaces(data);
 
 				let freeCount = 0;
@@ -43,8 +57,8 @@ const AppPage = () => {
 				setError(null);
 			})
 			.catch((error) => {
-				console.error(error);
-				setError('Не удалось загрузить данные. Пожалуйста, попробуйте позже.');
+				console.error('❌ Ошибка загрузки:', error);
+				setError('Не удалось загрузить данные. Проверьте сервер.');
 			});
 	};
 
@@ -139,7 +153,7 @@ const AppPage = () => {
 
 		const mapInterval = setInterval(() => {
 			loadMap();
-		}, 500);
+		}, 5000);
 
 		return () => {
 			clearInterval(timeInterval);
@@ -290,7 +304,7 @@ const AppPage = () => {
 			</div>
 			<footer>
 				<p>
-					&copy; 2025 SpotBot. Все права защищены.{' '}
+					&copy; 2026 SpotBot. Все права защищены.{' '}
 					<a href='mailto:khajynova@gmail.com'>Свяжитесь с нами</a>
 				</p>
 			</footer>

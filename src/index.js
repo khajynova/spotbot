@@ -3,17 +3,16 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import AppPage from '@views/AppPage/AppPage';
 import '@assets/styles/index.css';
-import { register as serviceWorker } from '@services/serviceWorkerRegistration';
+import * as serviceWorkerRegistration from './services/serviceWorkerRegistration';
 
 let deferredPrompt;
 
-window.addEventListener('beforeinstallprompt', e => {
-	console.log('beforeinstallprompt event fired'); // Проверка
+window.addEventListener('beforeinstallprompt', (e) => {
+	console.log('beforeinstallprompt event fired');
 	e.preventDefault();
 	deferredPrompt = e;
 
 	if (!localStorage.getItem('installDismissed')) {
-		console.log('Showing install banner'); // Проверка
 		showInstallBanner();
 	}
 });
@@ -56,15 +55,13 @@ function promptInstall() {
 	if (deferredPrompt) {
 		deferredPrompt.prompt();
 
-		// Обработка результата
-		deferredPrompt.userChoice.then(choiceResult => {
+		deferredPrompt.userChoice.then((choiceResult) => {
 			if (choiceResult.outcome === 'accepted') {
 				console.log('User accepted the install prompt');
 			} else {
 				console.log('User dismissed the install prompt');
 			}
 
-			// Очистить saved prompt
 			deferredPrompt = null;
 		});
 	}
@@ -77,5 +74,10 @@ root.render(
 	</BrowserRouter>,
 );
 
-// Регистрация service worker
-serviceWorker();
+// Регистрация service worker ТОЛЬКО в production
+serviceWorkerRegistration.register();
+
+// Если хотите отключить service worker в development:
+if (process.env.NODE_ENV === 'production') {
+	serviceWorker();
+}
