@@ -1,15 +1,15 @@
 {
 	"short_name": "SpotBot",
-	"name": "SpotBot App",
-	"description": "SpotBot - приложение для поиска свободного места.",
+	"name": "SpotBot - Parking Management",
+	"description": "PWA приложение для управления парковочными местами",
 	"icons": [
 		{
-			"src": "logo128.png", // Без %PUBLIC_URL%
-			"sizes": "192x192",
+			"src": "logo128.png",
+			"sizes": "128x128",
 			"type": "image/png"
 		},
 		{
-			"src": "logo512.png", // Без %PUBLIC_URL%
+			"src": "logo512.png",
 			"sizes": "512x512",
 			"type": "image/png"
 		}
@@ -17,5 +17,6 @@
 	"start_url": ".",
 	"display": "standalone",
 	"theme_color": "#256068",
-	"background_color": "#ffffff"
+	"background_color": "#ffffff",
+	"orientation": "portrait-primary"
 }
