@@ -1,0 +1,50 @@
+.map-area {
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin-bottom: 20px;
+	width: 1500px; /* Размер пространства */
+	height: 500px;
+	background-color: #f8f8f8;
+	position: relative;
+}
+
+.map-info {
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #333;
+}
+
+.map-grid {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start; /* Выровнять по левому краю */
+}
+
+.map-row {
+	display: flex;
+	gap: 0px; /* Расстояние между ячейками - 0 */
+}
+
+.map-space {
+	width: 90px; /* Пропорционально уменьшенные размеры */
+	height: 45px; /* Пропорционально уменьшенные размеры */
+	background-color: #d7ebbe; /* Цвет свободного места */
+	text-align: center;
+	line-height: 45px;
+	cursor: pointer;
+	border: 1px solid #aaa;
+}
+
+.map-space.booked {
+	background-color: #ff4d4d; /* Красный цвет для занятых */
+	cursor: not-allowed;
+}
+
+.map-space.selected {
+	background-color: #256068;
+	color: #fff;
+}
+
+.map-space.available:hover {
+	background-color: #b5d6a2; /* Цвет при наведении */
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="%PUBLIC_URL%/" />
+    <meta name="theme-color" content="#256068" />
+		<meta name="application-name" content="SpotBot App" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta
+			name="apple-mobile-web-app-status-bar-style"
+			content="black-translucent"
+		/>
+		<meta name="apple-mobile-web-app-title" content="SpotBot" />
+		<meta name="msapplication-TileColor" content="#256068" />
+		<meta
+			name="description"
+			content="SpotBot - приложение для поиска свободного места"
+		/>
+
+		<!-- iOS Touch Icon -->
+		<link rel="apple-touch-icon" href="%PUBLIC_URL%/static/media/logo192.png" />
+
+		<!-- Web App Manifest -->
+		<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+		<title>SpotBot - Поиск свободного места</title>
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<!-- Шапка сайта -->
+		<header>
+			<h1>SpotBot - Find the Spot!</h1>
+			<p>
+				Автоматизированное решение для анализа и управления свободными местами
+			</p>
+		</header>
+
+		<!-- Основной контейнер -->
+		<div class="container">
+			<!-- Карта парковки -->
+			<div class="parking-area">
+				<!-- Первый ряд -->
+				<div class="row row-1">
+					<div class="space" id="space-1">1</div>
+					<div class="space" id="space-2">2</div>
+					<div class="space" id="space-3">3</div>
+					<div class="space" id="space-4">4</div>
+					<div class="space" id="space-5">5</div>
+					<div class="space" id="space-6">6</div>
+					<div class="space" id="space-7">7</div>
+					<div class="space" id="space-8">8</div>
+					<div class="space" id="space-9">9</div>
+					<div class="space" id="space-10">10</div>
+					<div class="space" id="space-11">11</div>
+					<div class="space" id="space-12">12</div>
+					<div class="space" id="space-13">13</div>
+					<div class="space" id="space-14">14</div>
+					<div class="space" id="space-15">15</div>
+				</div>
+
+				<!-- Пропуск для проезда -->
+				<div class="row gap"></div>
+
+				<!-- Второй (сдвоенный) ряд -->
+				<div class="row row-2">
+					<div class="space" id="space-16">16</div>
+					<div class="space" id="space-17">17</div>
+					<div class="space" id="space-18">18</div>
+					<div class="space" id="space-19">19</div>
+					<div class="space" id="space-20">20</div>
+					<div class="space" id="space-21">21</div>
+					<div class="space" id="space-22">22</div>
+					<div class="space" id="space-23">23</div>
+					<div class="space" id="space-24">24</div>
+					<div class="space" id="space-25">25</div>
+					<div class="space" id="space-26">26</div>
+					<div class="space" id="space-27">27</div>
+				</div>
+
+				<!-- Третий (сдвоенный) ряд -->
+				<div class="row row-3">
+					<div class="space" id="space-28">28</div>
+					<div class="space" id="space-29">29</div>
+					<div class="space" id="space-30">30</div>
+					<div class="space" id="space-31">31</div>
+					<div class="space" id="space-32">32</div>
+					<div class="space" id="space-33">33</div>
+					<div class="space" id="space-34">34</div>
+					<div class="space" id="space-35">35</div>
+					<div class="space" id="space-36">36</div>
+					<div class="space" id="space-37">37</div>
+					<div class="space" id="space-38">38</div>
+					<div class="space" id="space-39">39</div>
+				</div>
+
+				<!-- Пропуск для проезда -->
+				<div class="row gap"></div>
+
+				<!-- Четвертый ряд -->
+				<div class="row row-4">
+					<div class="space" id="space-40">40</div>
+					<div class="space" id="space-41">41</div>
+					<div class="space" id="space-42">42</div>
+					<div class="space" id="space-43">43</div>
+					<div class="space" id="space-44">44</div>
+					<div class="space" id="space-45">45</div>
+					<div class="space" id="space-46">46</div>
+					<div class="space" id="space-47">47</div>
+					<div class="space" id="space-48">48</div>
+					<div class="space" id="space-49">49</div>
+					<div class="space" id="space-50">50</div>
+					<div class="space" id="space-51">51</div>
+					<div class="space" id="space-52">52</div>
+					<div class="space" id="space-53">53</div>
+				</div>
+			</div>
+
+			<div class="places">
+				<div class="robot">
+					<img src="robot.png" alt="Робот" />
+					<span class="tooltip"
+						>Нажмите на изображение, чтобы узнать характеристики робота</span
+					>
+				</div>
+
+				<div class="modal" id="robot-modal">
+					<div class="modal-content">
+						<span class="close-btn">&times;</span>
+						<h2>Технические характеристики робота</h2>
+
+							<p>модуль ESP32 (ESP-WROOM-32) 30pin</p>
+							<p>драйвер двигателя L298N (2 шт)</p>
+							<p>двигатель DC3V-6V DC мотор-редуктор(угловой) (2 шт)</l>
+							<p>ультразвуковой датчик расстояния Ардуино HC-SR04 (3 шт)</p>
+							<p>3-х осевой гироскоп и акселерометр GY-521 (MPU 6050)</p>
+
+					</div>
+				</div>
+				<!-- Информация о свободных/занятых местах -->
+				<div class="info">
+					<div>
+						<strong>Общее количество мест:</strong>
+						<div class="space transparent">53</div>
+					</div>
+					<div>
+						<strong>Свободных мест:</strong>
+						<div class="space free" id="free-count-box">0</div>
+					</div>
+					<div>
+						<strong>Занятых мест:</strong>
+						<div class="space occupied" id="occupied-count-box">0</div>
+					</div>
+				</div>
+
+				<!-- Список забронированных мест -->
+				<div class="booked">
+          <div>
+					<strong>Забронированных мест:</strong>
+					<div class="space reserved" id="reserved-count-box">0</div>
+          </div>
+					<ul id="reserved-list"></ul>
+				</div>
+			</div>
+
+			<!-- Текущее системное время -->
+			<div>
+				<strong>Текущее время:</strong>
+				<span id="time-counter">--:--:--</span>
+			</div>
+		</div>
+
+		<!-- Подвал -->
+		<footer>
+			<p>
+				&copy; 2025 SpotBot. Все права защищены.
+				<a href="mailto:deniskhajyn@gmail.com">Свяжитесь с нами</a>
+			</p>
+		</footer>
+
+		<!-- Скрипт для функциональности -->
+		<script src="script.js"></script>
+	</body>
+</html>

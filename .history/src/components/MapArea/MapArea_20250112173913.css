@@ -1,0 +1,35 @@
+.parking-map {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.row {
+	display: flex;
+	margin-bottom: 70px; /* Между рядами */
+}
+
+.parking-slot {
+	width: 207px; /* Ширина автомобиля */
+	height: 152px; /* Длина автомобиля */
+	margin-right: 70px; /* Расстояние между автомобилями */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 12px;
+	border: 1px solid #000;
+}
+
+.parking-slot:last-child {
+	margin-right: 0;
+}
+
+.parking-slot.free {
+	background-color: white;
+}
+
+.parking-slot.occupied {
+	background-color: red;
+}

@@ -1,0 +1,95 @@
+/* Стили для всего приложения */
+body {
+	font-family: Arial, sans-serif;
+}
+
+.app-layout {
+	padding: 20px;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #256068;
+	color: #fff;
+	padding: 10px;
+}
+
+.header img.logo {
+	width: 50px;
+	height: auto;
+}
+
+footer {
+	text-align: center;
+	padding: 10px;
+	background-color: #256068;
+	color: #fff;
+}
+
+h1,
+h2,
+h3 {
+	color: #d7ebbe;
+}
+
+.map-area {
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.map-space {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	background-color: #d7ebbe;
+	margin: 5px;
+	text-align: center;
+	line-height: 100px;
+	cursor: pointer;
+}
+
+.map-space.selected {
+	background-color: #256068;
+	color: #fff;
+}
+
+.buttons {
+	margin: 20px 0;
+}
+
+button {
+	padding: 10px;
+	margin: 5px;
+	background-color: #256068;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #1d4b54;
+}
+
+.booking-table {
+	margin-top: 20px;
+}
+
+.booking-table table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.booking-table table,
+.booking-table th,
+.booking-table td {
+	border: 1px solid #ccc;
+}
+
+.booking-table th,
+.booking-table td {
+	padding: 10px;
+	text-align: center;
+}

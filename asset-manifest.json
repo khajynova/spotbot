@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/spotbot/static/css/main.f3a207e0.css",
+    "main.js": "/spotbot/static/js/main.1e23dda0.js",
+    "index.html": "/spotbot/index.html",
+    "main.f3a207e0.css.map": "/spotbot/static/css/main.f3a207e0.css.map",
+    "main.1e23dda0.js.map": "/spotbot/static/js/main.1e23dda0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f3a207e0.css",
+    "static/js/main.1e23dda0.js"
+  ]
+}

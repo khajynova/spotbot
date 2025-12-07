@@ -1,0 +1,354 @@
+/* Общие стили */
+.app-page {
+	font-family: Arial, sans-serif;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	background-color: #1b1f24;
+	color: #dfe6e9;
+	overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+}
+
+header,
+footer {
+	background-color: #2c3e50;
+	color: #dfe6e9;
+	padding: 1rem; /* Используем rem для отступов */
+	text-align: center;
+	box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+	font-size: 3rem; /* Заголовок адаптируется к размеру шрифта */
+	margin-bottom: 0.5rem;
+	color: #dfe6e9;
+}
+
+header p {
+	font-size: 1.5rem; /* Размер текста для описания */
+	margin-bottom: 0.5rem;
+	color: #b2bec3;
+}
+
+footer p {
+	margin: 0;
+	font-size: 1rem;
+}
+
+footer a {
+	color: #dfe6e9;
+	text-decoration: none;
+}
+
+footer a:hover {
+	text-decoration: underline;
+	color: #b2bec3;
+}
+
+/* Информационные карточки */
+.info {
+	background-color: #636e72;
+	border: 0.125rem solid #9ca4a8;
+	border-radius: 0.625rem;
+	padding: 1rem;
+	margin: 0.5rem auto;
+	width: 90%; /* Относительная ширина для адаптации */
+	max-width: 25rem; /* Максимальная ширина для больших экранов */
+	box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+	font-size: 1rem;
+	text-align: left;
+}
+
+.info div {
+	margin: 0.5rem 0;
+	text-align: center;
+	color: #b2bec3;
+	font-weight: bold;
+}
+
+.container {
+	background-color: #1b1f24;
+	padding: 0.5rem;
+}
+
+/* Парковочная зона */
+.parking-area {
+	display: grid;
+	grid-template-rows:
+		repeat(1, 3vh) /* Первый ряд */
+		10vh /* Проезд */
+		repeat(2, 4vh) /* Сдвоенные ряды */
+		10vh /* Нижний проезд */
+		4vh; /* Последний ряд */
+	gap: 0; /* Убираем расстояние между ячейками */
+	justify-content: center; /* Центрируем содержимое */
+	align-content: start;
+	padding: 1rem; /* Уменьшаем padding для экономии места */
+	background-color: #34495e;
+	border: 0.1875rem solid #636e72;
+	border-radius: 0.625rem;
+	width: 100%; /* Занимает всю ширину родительского элемента */
+	max-width: 90vw; /* Оставляем отступы от края экрана */
+	box-sizing: border-box; /* Включаем padding и border в размеры */
+	margin: 2rem auto; /* Центрируем контейнер */
+	box-shadow: 0 0.375rem 0.625rem rgba(0, 0, 0, 0.15);
+	overflow-x: hidden; /* Скрываем лишнее по горизонтали */
+}
+/* Ряды мест */
+.row {
+	display: grid;
+	grid-auto-flow: column;
+	gap: 0;
+}
+
+.row-1 {
+	grid-template-columns: repeat(15, 6vw); /* Относительная ширина */
+}
+
+.row-2 {
+	grid-template-columns: repeat(12, 6vw);
+	margin-left: 12vw; /* Смещение ряда */
+}
+
+.row-3 {
+	grid-template-columns: repeat(12, 6vw);
+	margin-left: 12vw;
+}
+
+.row-4 {
+	grid-template-columns: repeat(14, 6vw);
+	margin-left: 6vw;
+}
+
+/* Отдельные места */
+.space {
+	width: 6vw;
+	height: 4vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1rem;
+	font-weight: bold;
+	background-color: white;
+	border: 0.125rem solid black;
+	box-sizing: border-box;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	cursor: pointer;
+	border-radius: 0.3125rem;
+}
+/* Цветовые схемы для состояний мест */
+.space.occupied {
+	background-color: #c0392b;
+	color: #dfe6e9;
+	border: 0.125rem solid #4e1d19;
+}
+
+.space.transparent {
+	background-color: #ffffff;
+	border: 0.125rem solid #2c3e50;
+	color: #000;
+}
+
+.space.free {
+	background-color: #517c47;
+	color: #dfe6e9;
+	border: 0.125rem solid #2d3d26;
+}
+
+.space.reserved {
+	background-color: #a37935;
+	color: #dfe6e9;
+	border: 0.125rem solid #633710;
+}
+
+.robot {
+	background-color: #636e72;
+	border: 0.125rem solid #9ca4a8;
+	border-radius: 0.625rem;
+	padding: 0.5rem;
+	margin: 0.5rem auto;
+	width: 90%;
+	max-width: 25rem;
+	box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	position: relative;
+	display: inline-block;
+}
+
+.tooltip {
+	position: absolute;
+	top: -20px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #e0a950;
+	color: #2d3436;
+	padding: 5px 10px;
+	border-radius: 5px;
+	border: 0.125rem solid #636e72;
+	font-size: 1rem;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+	white-space: wrap;
+	z-index: 10;
+}
+
+.robot:hover .tooltip {
+	opacity: 1;
+	visibility: visible;
+}
+
+.robot img {
+	cursor: pointer;
+	transform: scale(0.8);
+	border-radius: 20%;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+	background-color: #ffffff;
+	color: #000;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #272525;
+	border-radius: 10px;
+	width: 80%;
+	max-width: 500px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	text-align: left;
+}
+
+.close-btn {
+	color: #807777;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.places {
+	display: flex;
+	flex-grow: 1;
+}
+
+/* Забронированные места */
+.booked {
+	background-color: #636e72;
+	border: 0.125rem solid #9ca4a8;
+	border-radius: 0.625rem;
+	padding: 0.5rem;
+	margin: 0.5rem auto;
+	width: 90%;
+	max-width: 25rem;
+	box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+	font-size: 1.5rem;
+	text-align: left;
+}
+
+.booked ul {
+	font-size: 1rem;
+}
+
+/* Список */
+#reserved-list {
+	margin: 2rem auto;
+	max-width: 30rem;
+	padding: 0.625rem;
+	background-color: #1b1f24;
+	border: 0.0625rem solid #bdc3c7;
+	list-style: none;
+	border-radius: 0.3125rem;
+	box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+}
+
+#reserved-list li {
+	padding: 0.3125rem;
+	border-bottom: 0.0625rem solid #636e72;
+}
+
+.cancel-reservation {
+	background-color: #e67e22;
+	border: 0.125rem solid #d35400;
+	border-radius: 0.3rem;
+}
+
+/* Таймер */
+#time-counter {
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #c0392b;
+}
+
+/* Отзывчивость */
+@media (max-width: 1024px) {
+	.parking-area {
+		padding: 1rem;
+		grid-template-rows: repeat(1, 5vh) 8vh repeat(2, 5vh) 8vh 5vh;
+	}
+
+	.space {
+		width: 4vw;
+		height: 2vh;
+		font-size: 0.75rem;
+	}
+
+	.places {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 768px) {
+	header h1 {
+		font-size: 2rem;
+	}
+
+	.reserved-list {
+		font-size: 0.9rem;
+	}
+
+	.parking-area {
+		grid-template-rows: repeat(1, 4vh) 7vh repeat(2, 4vh) 7vh 4vh;
+	}
+
+	.space {
+		width: 3vw;
+		height: 1.5vh;
+		font-size: 0.65rem;
+	}
+
+	.places {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 480px) {
+	header h1 {
+		font-size: 1.5rem;
+	}
+
+	.space {
+		width: 1vw;
+		height: 0.25vh;
+		font-size: 0.6rem;
+	}
+}

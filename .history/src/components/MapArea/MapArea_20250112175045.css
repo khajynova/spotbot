@@ -1,0 +1,49 @@
+.map-area {
+	padding: 20px;
+	background-color: #f4f4f4;
+	border: 1px solid #ccc;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.parking-grid {
+	display: grid;
+	grid-template-columns: repeat(10, 25px); /* Количество колонок */
+	grid-gap: 5px;
+	justify-content: center;
+	background-color: #256068;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.parking-row {
+	display: flex;
+}
+
+.parking-space {
+	width: 25px;
+	height: 15px;
+	text-align: center;
+	line-height: 15px;
+	font-size: 10px;
+	font-weight: bold;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	background-color: white;
+}
+
+.parking-space.occupied {
+	background-color: #ff4c4c;
+	color: #fff;
+	cursor: not-allowed;
+}
+
+.parking-space.available {
+	background-color: #d7ebbe;
+}
+
+.parking-space.selected {
+	background-color: #256068;
+	color: white;
+}

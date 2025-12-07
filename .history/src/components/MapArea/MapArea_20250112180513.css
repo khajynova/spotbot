@@ -1,0 +1,36 @@
+.map-area {
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.map-row {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+.map-space {
+	width: 50px; /* Уменьшили размер */
+	height: 50px; /* Уменьшили размер */
+	background-color: #d7ebbe; /* Цвет свободного места */
+	margin: 5px;
+	text-align: center;
+	line-height: 50px;
+	cursor: pointer;
+	border: 1px solid #aaa;
+}
+
+.map-space.booked {
+	background-color: #ff4d4d; /* Красный цвет для занятых мест */
+	cursor: not-allowed;
+}
+
+.map-space.selected {
+	background-color: #256068;
+	color: #fff;
+}
+
+.map-space.available:hover {
+	background-color: #b5d6a2; /* Цвет при наведении */
+}
