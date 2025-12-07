@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './AppPage.styles.css';
 
 const AppPage = () => {
-	const serverIP = 'http://localhost:3000'; // Адрес локального мок-сервера
+	const serverIP = 'http://localhost:3001'; // Адрес локального мок-сервера
 	const [freeSpaces, setFreeSpaces] = useState(Array(53).fill(0));
 	const [reservedSpaces, setReservedSpaces] = useState([]);
 	const [time, setTime] = useState('--:--:--');
@@ -10,20 +10,20 @@ const AppPage = () => {
 
 	const loadMap = () => {
 		fetch(serverIP + '/getFreeSpaces')
-			.then(response => {
+			.then((response) => {
 				if (!response.ok) {
 					throw new Error('Ошибка загрузки данных с сервера.');
 				}
 				return response.json();
 			})
-			.then(data => {
+			.then((data) => {
 				setFreeSpaces(data);
 
 				let freeCount = 0;
 				let occupiedCount = 0;
 
 				data.forEach((space, index) => {
-					if (reservedSpaces.find(reserved => reserved.id === index + 1)) {
+					if (reservedSpaces.find((reserved) => reserved.id === index + 1)) {
 						return; // Забронированное место
 					}
 					if (space === 0) {
@@ -42,36 +42,36 @@ const AppPage = () => {
 				// Очищаем ошибки при успешной загрузке
 				setError(null);
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.error(error);
 				setError('Не удалось загрузить данные. Пожалуйста, попробуйте позже.');
 			});
 	};
 
-	const reserveSpace = index => {
+	const reserveSpace = (index) => {
 		if (freeSpaces[index] === 0) {
 			const now = new Date();
 
 			fetch(serverIP + '/reserve?index=' + index)
-				.then(response => {
+				.then((response) => {
 					if (!response.ok) {
 						throw new Error('Ошибка при бронировании места.');
 					}
 					return response.text();
 				})
-				.then(message => {
+				.then((message) => {
 					alert(message);
 
-					setFreeSpaces(prev => {
+					setFreeSpaces((prev) => {
 						const updatedSpaces = [...prev];
 						updatedSpaces[index] = 1; // Обновляем состояние места на "занято"
 						return updatedSpaces;
 					});
 
-					setReservedSpaces(prev => [...prev, { id: index + 1, time: now }]);
+					setReservedSpaces((prev) => [...prev, { id: index + 1, time: now }]);
 					loadMap();
 				})
-				.catch(error => {
+				.catch((error) => {
 					console.error(error);
 					setError('Ошибка при бронировании места. Попробуйте снова.');
 				});
@@ -80,9 +80,9 @@ const AppPage = () => {
 		}
 	};
 
-	const cancelReservation = id => {
-		setReservedSpaces(prev => prev.filter(reserved => reserved.id !== id));
-		setFreeSpaces(prev => {
+	const cancelReservation = (id) => {
+		setReservedSpaces((prev) => prev.filter((reserved) => reserved.id !== id));
+		setFreeSpaces((prev) => {
 			const updatedSpaces = [...prev];
 			updatedSpaces[id - 1] = 0; // Освобождаем место
 			return updatedSpaces;
@@ -94,7 +94,7 @@ const AppPage = () => {
 		const reservedList = document.getElementById('reserved-list');
 		reservedList.innerHTML = '';
 
-		reservedSpaces.forEach(space => {
+		reservedSpaces.forEach((space) => {
 			const duration = calculateDuration(space.time);
 			const li = document.createElement('li');
 			li.innerHTML = `
@@ -107,14 +107,14 @@ const AppPage = () => {
 		});
 
 		// Обработчики для кнопок отмены бронирования
-		document.querySelectorAll('.cancel-reservation').forEach(button => {
-			button.addEventListener('click', event =>
+		document.querySelectorAll('.cancel-reservation').forEach((button) => {
+			button.addEventListener('click', (event) =>
 				cancelReservation(parseInt(event.target.getAttribute('data-id'), 10)),
 			);
 		});
 	};
 
-	const calculateDuration = startTime => {
+	const calculateDuration = (startTime) => {
 		const now = new Date();
 		const duration = Math.floor((now - startTime) / 1000); // Время в секундах
 		const hours = Math.floor(duration / 3600);
@@ -174,7 +174,7 @@ const AppPage = () => {
 					Автоматизированное решение для анализа и управления свободными местами
 				</p>
 			</header>
-      
+
 			<div className='container'>
 				<div className='parking-area'>
 					{/* Первый ряд */}
@@ -183,7 +183,7 @@ const AppPage = () => {
 							<div
 								key={index}
 								className={`space ${
-									reservedSpaces.find(reserved => reserved.id === index + 1)
+									reservedSpaces.find((reserved) => reserved.id === index + 1)
 										? 'reserved'
 										: freeSpaces[index] === 0
 										? 'free'
@@ -203,7 +203,7 @@ const AppPage = () => {
 							<div
 								key={index + 15}
 								className={`space ${
-									reservedSpaces.find(reserved => reserved.id === index + 16)
+									reservedSpaces.find((reserved) => reserved.id === index + 16)
 										? 'reserved'
 										: freeSpaces[index + 15] === 0
 										? 'free'
@@ -223,7 +223,7 @@ const AppPage = () => {
 							<div
 								key={index + 27}
 								className={`space ${
-									reservedSpaces.find(reserved => reserved.id === index + 28)
+									reservedSpaces.find((reserved) => reserved.id === index + 28)
 										? 'reserved'
 										: freeSpaces[index + 27] === 0
 										? 'free'
@@ -243,7 +243,7 @@ const AppPage = () => {
 							<div
 								key={index + 39}
 								className={`space ${
-									reservedSpaces.find(reserved => reserved.id === index + 40)
+									reservedSpaces.find((reserved) => reserved.id === index + 40)
 										? 'reserved'
 										: freeSpaces[index + 39] === 0
 										? 'free'
@@ -291,7 +291,7 @@ const AppPage = () => {
 			<footer>
 				<p>
 					&copy; 2025 SpotBot. Все права защищены.{' '}
-					<a href='mailto:deniskhajyn@gmail.com'>Свяжитесь с нами</a>
+					<a href='mailto:khajynova@gmail.com'>Свяжитесь с нами</a>
 				</p>
 			</footer>
 		</div>

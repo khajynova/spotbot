@@ -3,14 +3,18 @@ const cors = require('cors');
 const path = require('path');
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 // Middleware для обработки JSON запросов и настройки CORS
 app.use(express.json());
 app.use(cors());
 
 // Указываем Express, где находятся статические файлы
-app.use(express.static(path.join(__dirname, 'public')));
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, 'build')));
+} else {
+	app.use(express.static(path.join(__dirname, 'public')));
+}
 
 // API для получения состояния всех мест
 let spaces = Array(53).fill(0); // 53 места: 0 - свободно, 1 - занято
